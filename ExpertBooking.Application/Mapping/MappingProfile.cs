@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ExpertBooking.Core.Entities;
-using ExpertBooking.Contracts.DTOs.Dashboard;
 using ExpertBooking.Contracts.DTOs.Shared;
+using ExpertBooking.Contracts.DTOs.Dashboard.AdminDashboard;
+using ExpertBooking.Contracts.DTOs.Dashboard.ExpertDashboard;
+using ExpertBooking.Contracts.DTOs.Dashboard.ClientDashboard;
 
 namespace ExpertBooking.Application.Mapping
 {
@@ -9,7 +11,7 @@ namespace ExpertBooking.Application.Mapping
     {
         public MappingProfile()
         {
-            // ===== Administration DTOs =====
+            // ===== AdminDashboard DTOs =====
             CreateMap<Expert, ExpertDto>();
             CreateMap<Client, ClientDto>();
             CreateMap<Admin, AdminDto>()
@@ -32,6 +34,32 @@ namespace ExpertBooking.Application.Mapping
                     opt.MapFrom(src => src.Category != null ? src.Category.Name : null));
 
             CreateMap<Client, ClientProfileDto>();
+
+            // Expert Dashboard
+            CreateMap<Expert, ExpertProfileDto>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.ProfileImageUrl, opt => opt.MapFrom(src => src.User.ProfileImageUrl))
+                .ForMember(dest => dest.Certifications, opt => opt.MapFrom(src => src.ExpertDocuments.Select(d => d.FileUrl)));
+
+            CreateMap<Review, ReviewExpertDto>()
+                .ForMember(dest => dest.ClientName, opt => opt.MapFrom(src => src.Client.User.FullName));
+
+            CreateMap<Booking, BookingExpertDto>()
+                .ForMember(dest => dest.ClientName, opt => opt.MapFrom(src => src.Client.User.FullName));
+
+            CreateMap<Schedule, ScheduleDto>().ReverseMap();
+
+            // Client Dashboard mappings
+            CreateMap<Client, ClientProfileDto>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName));
+
+            CreateMap<Booking, BookingClientDto>()
+                .ForMember(dest => dest.ExpertName, opt => opt.MapFrom(src => src.Expert.User.FirstName + " " + src.Expert.User.LastName))
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.ToString()));
+
+            CreateMap<Review, ReviewClientDto>()
+                .ForMember(dest => dest.ExpertName, opt => opt.MapFrom(src => src.Expert.User.FirstName + " " + src.Expert.User.LastName));
         }
     }
 }

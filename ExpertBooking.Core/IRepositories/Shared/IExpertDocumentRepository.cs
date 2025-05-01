@@ -1,6 +1,4 @@
-﻿
-using ExpertBooking.Core.Entities;
-
+﻿using ExpertBooking.Core.Entities;
 
 namespace ExpertBooking.Core.IRepositories.Shared
 {

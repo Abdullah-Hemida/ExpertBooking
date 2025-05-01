@@ -1,8 +1,6 @@
 ﻿using ExpertBooking.Core.Entities;
 using ExpertBooking.Core.IRepositories.Shared;
 using ExpertBooking.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace ExpertBooking.Infrastructure.Repositories.Shared
 {

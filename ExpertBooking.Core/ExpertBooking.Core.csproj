@@ -10,5 +10,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.13" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  	<ProjectReference Include="..\ExpertBooking.Contracts\ExpertBooking.Contracts.csproj" />
   </ItemGroup>
 </Project>

@@ -1,49 +1,74 @@
-﻿# 💼 Expert Booking Web API
+﻿# Expert Booking Web Application
 
-A powerful ASP.NET Core Web API for booking online consultations with verified experts. Built with Clean Architecture, SOLID principles, and support for role-based access (Admin, Expert, Client).
-
----
-
-## 🚀 Features
-
-- ✅ JWT Authentication + Refresh Token
-- ✅ Register with Email/Password or Google
-- ✅ Role Selection After Registration: Expert or Client
-- ✅ Expert Profile Completion with:
-  - Profile image
-  - Bio, job title, experience, hourly rate
-  - ID document, certifications, intro video
-- ✅ Admin Verification System for Experts
-- ✅ Client Profile Form
-- ✅ Admin, Expert, and Client Dashboards (Coming Soon)
-- ✅ Category & Expertise Management
-- ✅ Secure File Uploads to Local Storage (Cloud support later)
+This project is a full-stack Expert Booking Platform where clients can book meetings with verified experts in various fields. Built using **ASP.NET Core Web API** for the backend and designed for a future **Angular** frontend. The system includes authentication, role-based access, dashboards, and file upload features.
 
 ---
 
-## 🔐 Authentication & Authorization
+## 📌 Features
 
+### ✅ Authentication & Authorization
+- Email & Password login and registration
+- Google Login using token verification
+- JWT Access & Refresh tokens with automatic renewal
+- Role-based access: `Admin`, `Expert`, `Client`
 - Multiple roles per user
-- Role-based policy authorization
-- Refresh token system (no re-login after expiration)
-- Google login support using email
+
+### 👤 User Flow
+- **Registration** → Role Selection → Profile Completion
+- Clients can immediately use services after registration
+- Experts must complete a profile and await admin approval
+
+### 📂 File Uploads
+- Profile pictures
+- Identification documents
+- Certifications
+- Expert intro videos
+
+### 📊 Dashboards
+#### Admin Dashboard
+- Manage Users (Experts, Clients)
+- Approve/Reject Experts
+- View stats: total users/bookings/categories
+- View top-rated experts and bookings per category
+
+#### Expert Dashboard
+- View & Update Profile
+- Manage Schedule Slots
+- View Bookings (Confirm/Reject/Add Notes)
+- Upload Certifications & Videos
+- View Reviews & Statistics
+
+#### Client Dashboard
+- View & Update Profile
+- Book & Cancel appointments
+- Add reviews to experts
+- Track own statistics (e.g., total bookings)
 
 ---
 
 ## 📦 Technologies
 
-- ASP.NET Core 8 Web API
-- Entity Framework Core
-- Identity & Role Management
-- AutoMapper
-- Clean Architecture + SOLID Principles
-- Local File Storage (switchable to cloud)
-- SQL Server
+- **ASP.NET Core 7.0** (Web API)
+- **Entity Framework Core** (Code First)
+- **Identity** (Authentication & Roles)
+- **JWT** (Access & Refresh Tokens)
+- **AutoMapper** (DTO ↔ Entities)
+- **SQL Server** (Database)
+- **Postman** (Testing APIs)
 
 ---
 
-## 🛠️ Getting Started
+## 🧩 Project Structure
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/expert-booking-api.git
+```plaintext
+ExpertBooking/
+├── API/                        # API Controllers
+├── Application/               # Services and Interfaces
+├── Core/
+│   ├── Entities/              # Domain Models
+│   ├── Enums/                 # Shared enums like UserType, BookingStatus
+│   ├── Interfaces/            # Repository Interfaces
+│   └── Models/                # Shared Models (e.g., BookingFilter)
+├── Contracts/DTOs/            # All DTOs grouped by module
+├── Infrastructure/            # Repository Implementations
+└── wwwroot/                   # Stored uploaded files

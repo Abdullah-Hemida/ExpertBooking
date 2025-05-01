@@ -1,7 +1,4 @@
 ﻿
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ExpertBooking.Core.Entities;
 using ExpertBooking.Core.IRepositories.Shared;
 using ExpertBooking.Infrastructure.Data;

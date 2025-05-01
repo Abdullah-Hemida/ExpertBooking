@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace ExpertBooking.Application.Services.Shared
 {

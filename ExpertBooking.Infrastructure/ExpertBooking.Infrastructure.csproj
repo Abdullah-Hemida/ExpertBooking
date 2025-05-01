@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ExpertBooking.Core\ExpertBooking.Core.csproj" />
     <ProjectReference Include="..\ExpertBooking.Application\ExpertBooking.Application.csproj" />
+	<ProjectReference Include="..\ExpertBooking.Contracts\ExpertBooking.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
