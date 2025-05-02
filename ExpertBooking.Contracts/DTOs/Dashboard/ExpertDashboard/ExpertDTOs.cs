@@ -1,5 +1,4 @@
 ﻿
-
 namespace ExpertBooking.Contracts.DTOs.Dashboard.ExpertDashboard
 {
     public class ExpertUpdateDto

@@ -11,8 +11,8 @@ namespace ExpertBooking.Core.Entities
         public Expert? Expert { get; set; }
 
         public DayOfWeek DayOfWeek { get; set; }
-        public TimeSpan StartTime { get; set; }
-        public TimeSpan EndTime { get; set; }
+        public DateTime StartTime { get; set; }
+        public DateTime EndTime { get; set; }
     }
 
     public class ScheduleConfiguration : IEntityTypeConfiguration<Schedule>

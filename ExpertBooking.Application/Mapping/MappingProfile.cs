@@ -4,6 +4,8 @@ using ExpertBooking.Contracts.DTOs.Shared;
 using ExpertBooking.Contracts.DTOs.Dashboard.AdminDashboard;
 using ExpertBooking.Contracts.DTOs.Dashboard.ExpertDashboard;
 using ExpertBooking.Contracts.DTOs.Dashboard.ClientDashboard;
+using ExpertBooking.Contracts.DTOs.Website;
+using ExpertBooking.Core.Enums;
 
 namespace ExpertBooking.Application.Mapping
 {
@@ -60,6 +62,28 @@ namespace ExpertBooking.Application.Mapping
 
             CreateMap<Review, ReviewClientDto>()
                 .ForMember(dest => dest.ExpertName, opt => opt.MapFrom(src => src.Expert.User.FirstName + " " + src.Expert.User.LastName));
+            
+            // ================= Website =================
+            CreateMap<Expert, ExpertCardDto>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName))
+                .ForMember(dest => dest.ProfileImageUrl, opt => opt.MapFrom(src => src.User.ProfileImageUrl))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src =>
+                    src.Reviews != null && src.Reviews.Any() ? src.Reviews.Average(r => r.Rating) : 0));
+
+            CreateMap<Expert, ExpertPublicProfileDto>()
+                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName))
+                .ForMember(dest => dest.ProfileImageUrl, opt => opt.MapFrom(src => src.User.ProfileImageUrl))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
+                .ForMember(dest => dest.Certifications, opt => opt.MapFrom(src => src.ExpertDocuments))
+                .ForMember(dest => dest.AverageRating, opt => opt.MapFrom(src =>
+                    src.Reviews != null && src.Reviews.Any() ? src.Reviews.Average(r => r.Rating) : 0));
+
+            CreateMap<Schedule, ScheduleSlotDto>();
+            CreateMap<CreateBookingDto, Booking>()
+                .ForMember(dest => dest.Status, opt => opt.MapFrom(_ => BookingStatus.Pending))
+                .ForMember(dest => dest.CreatedAt, opt => opt.MapFrom(_ => DateTime.UtcNow));
+
         }
     }
 }
