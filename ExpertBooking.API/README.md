@@ -1,74 +1,74 @@
-﻿# Expert Booking Web Application
+﻿# ExpertBooking Platform 🧠💼
 
-This project is a full-stack Expert Booking Platform where clients can book meetings with verified experts in various fields. Built using **ASP.NET Core Web API** for the backend and designed for a future **Angular** frontend. The system includes authentication, role-based access, dashboards, and file upload features.
+ExpertBooking is a robust freelance-style platform built with **ASP.NET Core Web API** and **Entity Framework Core**, allowing clients to book online meetings with verified experts based on their expertise, rates, and availability.
 
 ---
 
 ## 📌 Features
 
-### ✅ Authentication & Authorization
-- Email & Password login and registration
-- Google Login using token verification
-- JWT Access & Refresh tokens with automatic renewal
-- Role-based access: `Admin`, `Expert`, `Client`
-- Multiple roles per user
+### 🔐 Authentication & Authorization
+- JWT-based authentication with role-based access control (`Admin`, `Expert`, `Client`)
+- Register with Email/Password or Google
+- Role selection and profile completion post-registration
+- Auto-refresh token system for seamless login
 
-### 👤 User Flow
-- **Registration** → Role Selection → Profile Completion
-- Clients can immediately use services after registration
-- Experts must complete a profile and await admin approval
+### 👤 User Roles
 
-### 📂 File Uploads
-- Profile pictures
-- Identification documents
-- Certifications
-- Expert intro videos
+#### ✅ Admin
+- Approve/reject expert registrations
+- Manage users, categories, and bookings
+- View platform statistics (total users/bookings/categories)
+- View top-rated experts & booking stats per category
 
-### 📊 Dashboards
-#### Admin Dashboard
-- Manage Users (Experts, Clients)
-- Approve/Reject Experts
-- View stats: total users/bookings/categories
-- View top-rated experts and bookings per category
+#### ✅ Expert Dashboard
+- View/update expert profile
+- Upload ID, certifications, and intro video
+- Manage availability schedule
+- View and respond to bookings (confirm/reject, add notes)
+- View reviews and stats (total bookings, average rating)
 
-#### Expert Dashboard
-- View & Update Profile
-- Manage Schedule Slots
-- View Bookings (Confirm/Reject/Add Notes)
-- Upload Certifications & Videos
-- View Reviews & Statistics
-
-#### Client Dashboard
-- View & Update Profile
-- Book & Cancel appointments
+#### ✅ Client Dashboard
+- Complete/update client profile
+- View/cancel bookings
 - Add reviews to experts
-- Track own statistics (e.g., total bookings)
+- View dashboard statistics
 
 ---
 
-## 📦 Technologies
+## 🌐 Website (Public API)
 
-- **ASP.NET Core 7.0** (Web API)
-- **Entity Framework Core** (Code First)
-- **Identity** (Authentication & Roles)
-- **JWT** (Access & Refresh Tokens)
-- **AutoMapper** (DTO ↔ Entities)
-- **SQL Server** (Database)
-- **Postman** (Testing APIs)
+Accessible without login for general users:
+
+- ✅ View featured experts
+- ✅ Search experts by keyword, category, rate, experience
+- ✅ Browse expert public profiles
+- ✅ View available booking slots
+- ✅ Book appointments with available experts
 
 ---
 
-## 🧩 Project Structure
+## 📦 Tech Stack
 
-```plaintext
+| Layer           | Tech Used                        |
+|----------------|-----------------------------------|
+| Backend         | ASP.NET Core Web API             |
+| Authentication  | JWT + Identity                   |
+| ORM             | Entity Framework Core            |
+| Mapping         | AutoMapper                       |
+| Storage         | Local file storage (with option for cloud) |
+| Database        | SQL Server                       |
+
+---
+
+## 📁 Project Structure
+
+```bash
 ExpertBooking/
-├── API/                        # API Controllers
-├── Application/               # Services and Interfaces
-├── Core/
-│   ├── Entities/              # Domain Models
-│   ├── Enums/                 # Shared enums like UserType, BookingStatus
-│   ├── Interfaces/            # Repository Interfaces
-│   └── Models/                # Shared Models (e.g., BookingFilter)
-├── Contracts/DTOs/            # All DTOs grouped by module
-├── Infrastructure/            # Repository Implementations
-└── wwwroot/                   # Stored uploaded files
+│
+├── ExpertBooking.API                # ASP.NET Core Web API
+├── ExpertBooking.Application        # Application services, interfaces, and DTOs
+├── ExpertBooking.Contracts          # Shared DTOs and Enums
+├── ExpertBooking.Core               # Entities, Enums, Interfaces (Repositories)
+├── ExpertBooking.Infrastructure     # EF Core DbContext, Repositories, Configs
+└── README.md
+
